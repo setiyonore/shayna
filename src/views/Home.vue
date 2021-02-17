@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <HeaderShayna/>
-    <HeroShayna/>
+    <HeroWomenShayna/>
+    <BannerShayna/>
   </div>
 </template>
 
@@ -9,13 +10,15 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import HeaderShayna from "@/components/HeaderShayna";
-import HeroShayna from "@/components/HeroShayna";
+import HeroWomenShayna from "@/components/HeroWomenShayna";
+import BannerShayna from "@/components/BannerShayna";
 export default {
   name: 'Home',
   components: {
     // HelloWorld
     HeaderShayna,
-    HeroShayna,
+    HeroWomenShayna,
+    BannerShayna,
 
   }
 }
