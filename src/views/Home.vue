@@ -4,6 +4,7 @@
     <HeroWomenShayna/>
     <BannerShayna/>
     <InstaShayna/>
+    <PartnerShayna/>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import HeaderShayna from "@/components/HeaderShayna";
 import HeroWomenShayna from "@/components/HeroWomenShayna";
 import BannerShayna from "@/components/BannerShayna";
 import InstaShayna from "@/components/InstaShayna";
+import PartnerShayna from "@/components/PartnerShayna";
 export default {
   name: 'Home',
   components: {
@@ -22,6 +24,7 @@ export default {
     HeroWomenShayna,
     BannerShayna,
     InstaShayna,
+    PartnerShayna,
 
   }
 }
