@@ -25,7 +25,7 @@
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
               </p>
-              <a href="#" class="primary-btn">Shop Now</a>
+              <a href="#" class="primary-btn">Shop Now </a>
             </div>
           </div>
         </div>
