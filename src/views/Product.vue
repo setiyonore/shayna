@@ -75,6 +75,7 @@
       </div>
     </section>
     <!-- Product Shop Section End -->
+    <RelatedShayna/>
     <FooterShayna/>
   </div>
 </template>
@@ -84,6 +85,7 @@
 import HeaderShayna from "@/components/HeaderShayna";
 import FooterShayna from "@/components/FooterShayna";
 import carousel from 'vue-owl-carousel';
+import RelatedShayna from "@/components/RelatedShayna";
 export default {
   name: 'Product',
   components: {
@@ -91,6 +93,7 @@ export default {
     HeaderShayna,
     FooterShayna,
     carousel,
+    RelatedShayna,
 
   },
   data(){
