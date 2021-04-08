@@ -46,7 +46,8 @@
                     <h4>${{ productDetails.price }}</h4>
                   </div>
                   <div class="quantity">
-                    <router-link to="/cart" class="primary-btn pd-cart">Add To Cart</router-link>
+<!--                    <router-link to="/cart" class="primary-btn pd-cart">Add To Cart</router-link>-->
+                    <a @click="saveKeranjang(productDetails.id,productDetails.name,productDetails.price,productDetails.galeries[0].photo)" href="#" class="primary-btn pd-cart">Add To Cart</a>
                   </div>
                 </div>
               </div>
@@ -81,14 +82,9 @@ export default {
   data(){
     return {
       gambar_default:"",
-        thumbs:[
-            "img/mickey1.jpg",
-            "img/mickey2.jpg",
-            "img/mickey3.jpg",
-            "img/mickey4.jpg",
-
-        ],
-        productDetails: []
+        thumbs:[],
+        productDetails: [],
+        keranjangUser:[],
     }
   },
   methods: {
@@ -99,8 +95,26 @@ export default {
       this.productDetails = data;
       this.gambar_default = data.galeries[0].photo;
     },
+    saveKeranjang(idProduct,nameProduct,priceProduct,photoProduct){
+      var productStored = {
+        "id": idProduct,
+        "name": nameProduct,
+        "price": priceProduct,
+        "photo": photoProduct
+      }
+      this.keranjangUser.push(productStored);
+      const parsed = JSON.stringify(this.keranjangUser);
+      localStorage.setItem('keranjangUser', parsed);
+    }
   },
   mounted() {
+    if (localStorage.getItem('keranjangUser')) {
+      try {
+        this.keranjangUser = JSON.parse(localStorage.getItem('keranjangUser'));
+      } catch(e) {
+        localStorage.removeItem('keranjangUser');
+      }
+    }
     axios
       .get("http://localhost/shayna-backend/public/api/products",{
           params: {
