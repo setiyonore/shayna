@@ -47,7 +47,7 @@
                               <h6>{{keranjang.name}}</h6>
                             </div>
                           </td>
-                          <td class="si-close">
+                          <td @click="removeItem(keranjangUser.index)" class="si-close">
                             <i class="ti-close"></i>
                           </td>
                         </tr>
@@ -85,6 +85,13 @@ export default {
   data() {
     return {
       keranjangUser:[]
+    }
+  },
+  methods: {
+    removeItem(index){
+      this.keranjangUser.splice(index);
+      const parsed = JSON.stringify(this.keranjangUser);
+      localStorage.setItem('keranjangUser',parsed);
     }
   },
   mounted() {
