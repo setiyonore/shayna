@@ -34,27 +34,15 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
+                  <tr v-for="keranjang in keranjangUser" :key="keranjang.id">
                     <td class="cart-pic first-row">
-                      <img src="img/cart-page/product-1.jpg" />
+                      <img class="img-cart" :src="keranjang.photo" />
                     </td>
                     <td class="cart-title first-row text-center">
-                      <h5>Pure Pineapple</h5>
+                      <h5>{{ keranjang.name }}</h5>
                     </td>
-                    <td class="p-price first-row">$60.00</td>
-                    <td class="delete-item"><a href="#"><i class="material-icons">
-                      close
-                    </i></a></td>
-                  </tr>
-                  <tr>
-                    <td class="cart-pic first-row">
-                      <img src="img/cart-page/product-1.jpg" />
-                    </td>
-                    <td class="cart-title first-row text-center">
-                      <h5>Pure Pineapple</h5>
-                    </td>
-                    <td class="p-price first-row">$60.00</td>
-                    <td class="delete-item"><a href="#"><i class="material-icons">
+                    <td class="p-price first-row">${{ keranjang.price }}</td>
+                    <td @click="removeItem(keranjangUser.index)" class="delete-item"><a href="#"><i class="material-icons">
                       close
                     </i></a></td>
                   </tr>
@@ -120,10 +108,34 @@ export default {
 name: "ShoppingCart",
   components: {
   HeaderShayna,
+  },
+  data() {
+    return {
+      keranjangUser:[]
+    }
+  },
+  methods: {
+    removeItem(index){
+      this.keranjangUser.splice(index,1);
+      const parsed = JSON.stringify(this.keranjangUser);
+      localStorage.setItem('keranjangUser',parsed);
+    }
+  },
+  mounted() {
+    if (localStorage.getItem('keranjangUser')) {
+      try {
+        this.keranjangUser = JSON.parse(localStorage.getItem('keranjangUser'));
+      } catch (e) {
+        localStorage.removeItem('keranjangUser');
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-
+.img-cart{
+  width: 100px;
+  height: 100px;
+}
 </style>
