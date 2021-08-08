@@ -42,7 +42,7 @@
                       <h5>{{ keranjang.name }}</h5>
                     </td>
                     <td class="p-price first-row">${{ keranjang.price }}</td>
-                    <td @click="removeItem(keranjangUser.index)" class="delete-item"><a href="#"><i class="material-icons">
+                    <td @click="removeItem(keranjangUser.id)" class="delete-item"><a href="#"><i class="material-icons">
                       close
                     </i></a></td>
                   </tr>
@@ -125,10 +125,14 @@ name: "ShoppingCart",
     }
   },
   methods: {
-    removeItem(index){
+    removeItem(idx){
+      let keranjangUserStorage = JSON.parse(localStorage.getItem("keranjangUser"));
+      let itemKeranjangUserStorage = keranjangUserStorage.map(itemKeranjangUserStorage => itemKeranjangUserStorage.id);
+      let index = itemKeranjangUserStorage.findIndex(id => id == idx);
       this.keranjangUser.splice(index,1);
       const parsed = JSON.stringify(this.keranjangUser);
-      localStorage.setItem('keranjangUser',parsed);
+      localStorage.setItem("keranjangUser",parsed);
+      window.location.reload();
     },
     checkout(){
       let productIds = this.keranjangUser.map(function (product){

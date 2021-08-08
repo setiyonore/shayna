@@ -47,7 +47,7 @@
                               <h6>{{keranjang.name}}</h6>
                             </div>
                           </td>
-                          <td @click="removeItem(keranjangUser.index)" class="si-close">
+                          <td @click="removeItem(keranjangUser.id)" class="si-close">
                             <i class="ti-close"></i>
                           </td>
                         </tr>
@@ -88,10 +88,14 @@ export default {
     }
   },
   methods: {
-    removeItem(index){
+    removeItem(idx){
+      let keranjangUserStorage = JSON.parse(localStorage.getItem("keranjangUser"));
+      let itemKeranjangUserStorage = keranjangUserStorage.map(itemKeranjangUserStorage => itemKeranjangUserStorage.id);
+      let index = itemKeranjangUserStorage.findIndex(id => id == idx);
       this.keranjangUser.splice(index,1);
       const parsed = JSON.stringify(this.keranjangUser);
-      localStorage.setItem('keranjangUser',parsed);
+      localStorage.setItem("keranjangUser",parsed);
+      window.location.reload();
     }
   },
   mounted() {
